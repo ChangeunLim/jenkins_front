@@ -3,13 +3,13 @@ version: 2.1
 jobs:
   vue-build-and-push:
     docker:
-      - image: cimg/base:2022.09
-        auth:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD
+      - image: cimg/node:lts
     working_directory: ~/project
     steps:
       - checkout
+      - run:
+          name: Install dependencies
+          command: npm install
       - run:
           name: Build Vue.js project
           command: npm run build
